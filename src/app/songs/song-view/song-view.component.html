@@ -1,0 +1,9 @@
+<div class="song-card">
+  <h3>{{ song.name }}</h3>
+<!--  <p>{{ song.duration | songDurationFormat }}</p>-->
+  <p>{{ song.duration }}</p>
+  <p>{{ song.genre }} (BPM: {{ song.bpm }})</p>
+  <p>Artist ref: {{ song.artistID }}</p>
+  <p>Added on {{ song.dateAdded | date }}</p>
+  <button (click)="handleRemoveSong(song)">Remove song</button>
+</div>

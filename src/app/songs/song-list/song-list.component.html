@@ -1,0 +1,6 @@
+<div class="my-list" *ngFor="let song of songs">
+  <app-song-view
+    (handleClick)="handleRemoveSong($event)"
+    [song] = "song"
+  ></app-song-view>
+</div>

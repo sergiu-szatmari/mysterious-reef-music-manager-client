@@ -31,7 +31,12 @@ export class SongService {
   constructor() { }
 
   getSongs(): Song[] {
-    return [ ...this.songs ];
+    return this.songs;
+  }
+
+  removeOne(song: Song): void {
+    const idx = this.songs.indexOf(song);
+    if (idx !== -1) { this.songs.splice(idx, 1); }
   }
 }
 

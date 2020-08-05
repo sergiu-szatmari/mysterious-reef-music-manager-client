@@ -23,7 +23,6 @@ export class ArtistListComponent implements OnInit {
   }
 
   handleClick(artist): void {
-    console.log(artist);
     this.artistService.removeOne(artist);
   }
 }
