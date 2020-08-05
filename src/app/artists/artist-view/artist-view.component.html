@@ -1,0 +1,6 @@
+<div class="artist-card">
+  <h3>{{ artist.name }}</h3>
+  <p>{{ artist.birthDate | date: 'medium' }}</p>
+  <p>{{ artist.originCountry || 'Unknown' }}</p>
+  <button (click)="handleClick(artist)"> Remove artist </button>
+</div>

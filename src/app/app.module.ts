@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SongDurationFormatPipe } from './shared/pipes/song-duration-format.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SongDurationFormatPipe
   ],
   imports: [
     BrowserModule,

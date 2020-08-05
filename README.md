@@ -1,2 +1,2 @@
-# mean-stack-music-manager-client
-Music Manager App Client
+# Music Manager (Client)
+Music manager client app created using Angular 10.
