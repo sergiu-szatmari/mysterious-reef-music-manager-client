@@ -1,7 +1,7 @@
 export interface Song {
   name: string;
   duration: number;
-  genre: string;
+  genre: string[];
   bpm: number;
   artistID: string;
   dateAdded: Date;

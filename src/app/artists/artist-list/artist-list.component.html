@@ -1,5 +1,6 @@
-<div class="my-list" *ngFor="let artist of artists">
+<div class="card-list">
   <app-artist-view
+    *ngFor="let artist of artists"
     (userClick)="handleClick($event)"
     [artist] = "artist"
   ></app-artist-view>
