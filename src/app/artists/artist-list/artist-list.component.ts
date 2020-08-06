@@ -29,6 +29,5 @@ export class ArtistListComponent implements OnInit {
 
   handleGoToArtist(artistId: string): void {
     this.router.navigate([ '/artists/', artistId ]);
-    console.log(artistId);
-}
+  }
 }

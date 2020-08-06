@@ -34,11 +34,18 @@ export class ArtistFormComponent implements OnInit, OnDestroy {
   }
 
   async loadData(artistId: string): Promise<void> {
-    this.artist = await this.artistService.findOne(artistId);
+    const empty: Artist = { _id: '', birthDate: new Date(), name: '', originCountry: '' };
+    this.artist = artistId === 'new' ?
+      empty :
+      await this.artistService.findOne(artistId);
   }
 
-  updateArtist() {
-    this.artistService.updateOne(this.artist);
-    this.router.navigateByUrl('/artists/');
+  async updateArtist(): Promise<void> {
+    if (!this.artist._id) {
+      await this.artistService.insert(this.artist);
+    } else {
+      await this.artistService.updateOne(this.artist);
+    }
+    await this.router.navigateByUrl('/artists');
   }
 }

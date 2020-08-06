@@ -1,4 +1,5 @@
 <div class="card-list">
+<!--<div class="card-list">-->
   <app-artist-view
     *ngFor="let artist of artists"
     (handleRemoveArtist)="handleRemoveArtist($event)"
@@ -6,8 +7,11 @@
     [artist] = "artist"
   ></app-artist-view>
 
-  <div class="artist-card">
-    <button class="artist-card-add-btn"> Add new </button>
-  </div>
-
+  <a routerLink="new" routerLinkActive="route-is-active">
+    <div class="artist-card">
+      <h2>
+        New
+      </h2>
+    </div>
+  </a>
 </div>
