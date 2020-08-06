@@ -1,13 +1,13 @@
 <div class="song-card">
   <h3>{{ song.name }}</h3>
-  <p>{{ song.duration | songDurationFormat }}</p>
-  <span>
+  <p>Duration: {{ song.duration | songDurationFormat }}</p>
+  <span style="font-weight: bold">
     <span *ngFor="let g of song.genre; index as i">
         {{g}} {{i < song.genre.length - 1 ? '|' : ''}}
     </span>
   </span>
 <!--  <p>{{ song.genre }} (BPM: {{ song.bpm }})</p>-->
   <p>Artist ref: {{ song.artistID }}</p>
-  <p>Added on {{ song.dateAdded | date }}</p>
+  <p>Added: {{ song.dateAdded | date }}</p>
   <button (click)="handleRemoveSong(song)">Remove song</button>
 </div>
