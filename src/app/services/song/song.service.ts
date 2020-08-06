@@ -1,42 +1,36 @@
 import { Injectable } from '@angular/core';
 
 import { Song } from '../../shared/models';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SongService {
 
-  private songs: Song[] = [
-    { name : 'Blue', duration : 240.0, genre : ['chillout'],
-      bpm : 100.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab7' },
-    { name : 'Empire', duration : 350.0, genre : ['indie'],
-      bpm : 120.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab6' },
-    { name : 'Hunger', duration : 320.0, genre : ['chillout'],
-      bpm : 130.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab7'},
-    { name : 'Realfriends', duration : 340.0, genre : ['edm', 'ambiental house'],
-      bpm : 90.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab6' },
-    { name : 'Morning mix', duration : 1000.0, genre : ['edm', 'techno'],
-      bpm : 110.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab6' },
-    { name : 'Lo-Fi chillout mix', duration : 340.0, genre : ['chillout'],
-      bpm : 120.0, dateAdded : new Date('2020-07-31'),
-      artistID : '5f23c91fb35df1222127fab6' }
-  ];
+  private songs: Song[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getSongs(): Song[] {
-    return this.songs;
+  async getSongs(): Promise<Song[]> {
+    return this.http.get<Song[]>(`https://mysterious-reef-17305.herokuapp.com/api/songs`).toPromise();
+    // return this.songs;
   }
 
-  removeOne(song: Song): void {
-    const idx = this.songs.indexOf(song);
-    if (idx !== -1) { this.songs.splice(idx, 1); }
+  async findOne(id: string): Promise<Song> {
+    return this.http.get<Song>(`https://mysterious-reef-17305.herokuapp.com/api/songs/${id}`).toPromise();
+  }
+
+  async removeOne(song: Song): Promise<void> {
+    const id = song._id;
+    try {
+      await this.http
+        .delete(`https://mysterious-reef-17305.herokuapp.com/api/songs/${id}`)
+        .toPromise();
+
+    } catch (err) {
+      if (err.status !== 200) { throw err; }
+    }
   }
 }
 

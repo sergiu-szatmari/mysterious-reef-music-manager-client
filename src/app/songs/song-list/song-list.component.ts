@@ -17,11 +17,12 @@ export class SongListComponent implements OnInit {
     this.loadData();
   }
 
-  loadData(): void {
-    this.songs = this.songService.getSongs();
+  async loadData(): Promise<void> {
+    this.songs = await this.songService.getSongs();
   }
 
-  handleRemoveSong(song): void {
-    this.songService.removeOne(song);
+  async handleRemoveSong(song): Promise<void> {
+    await this.songService.removeOne(song);
+    this.ngOnInit();
   }
 }

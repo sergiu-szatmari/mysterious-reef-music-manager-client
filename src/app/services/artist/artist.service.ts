@@ -1,27 +1,36 @@
 import { Injectable } from '@angular/core';
 
 import { Artist } from '../../shared/models';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArtistService {
 
-  private artists: Artist[] = [
-    { name: 'Far Caspian', birthDate: new Date('2018-01-01'), originCountry: 'UK' },
-    { name: 'Of Monsters and Men', birthDate: new Date('2010-01-01'), originCountry: 'Iceland' },
-    { name: 'Mild Orange', birthDate: new Date('2016-01-01'), originCountry: 'New Zealand' },
-    { name: 'DjPoolboi', birthDate: new Date('1994-01-01'), originCountry: 'USA' },
-  ];
+  private artists: Artist[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getArtists(): Artist[] {
-    return this.artists;
+  getArtists(): Promise<Artist[]> {
+
+    return this.http.get<Artist[]>(`https://mysterious-reef-17305.herokuapp.com/api/artists`).toPromise();
+    // return this.artists;
   }
 
-  removeOne(artist: Artist): void {
-    const idx = this.artists.indexOf(artist);
-    if (idx !== -1) { this.artists.splice(idx, 1); }
+  findOne(id: string): Promise<Artist> {
+    return this.http.get<Artist>(`https://mysterious-reef-17305.herokuapp.com/api/artists/${id}`).toPromise();
+  }
+
+  async updateOne(artist: Artist): Promise<void> {
+    console.log('tba');
+  }
+
+  async removeOne(artist: Artist): Promise<void> {
+    const id = artist._id;
+    await this.http
+          .delete(`https://mysterious-reef-17305.herokuapp.com/api/artists/${id}`)
+          .toPromise();
+
   }
 }

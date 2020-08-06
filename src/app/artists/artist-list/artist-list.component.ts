@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from '../../shared/models';
 import { ArtistService } from '../../services/artist/artist.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-artist-list',
@@ -11,18 +12,23 @@ export class ArtistListComponent implements OnInit {
 
   artists: Artist[] = [];
 
-  constructor(private artistService: ArtistService) { }
+  constructor(private artistService: ArtistService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  loadData(): void {
-    this.artists = this.artistService.getArtists();
-    console.table({ artists: this.artists });
+  async loadData(): Promise<void> {
+    this.artists = await this.artistService.getArtists();
   }
 
-  handleClick(artist): void {
-    this.artistService.removeOne(artist);
+  async handleRemoveArtist(artist): Promise<void> {
+    await this.artistService.removeOne(artist);
+    this.ngOnInit();
   }
+
+  handleGoToArtist(artistId: string): void {
+    this.router.navigate([ '/artists/', artistId ]);
+    console.log(artistId);
+}
 }

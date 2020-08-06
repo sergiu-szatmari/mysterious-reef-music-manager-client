@@ -1,0 +1,39 @@
+<form *ngIf="artist" #artistForm="ngForm">
+  <label>Name</label>
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="artist.name"
+    #nameField
+    required
+    minlength="3">
+  <br>
+  <p>{{nameField.validationMessage}}</p>
+
+  <label>Age</label>
+  <input
+    name="birthDate"
+    type="date"
+    [(ngModel)]="artist.birthDate"
+    #ageField
+    required>
+  <br>
+  <p>{{ageField.validationMessage}}</p>
+
+  <label>Origin country</label>
+  <input
+    name="originCountry"
+    type="text"
+    [(ngModel)]="artist.originCountry"
+    #originCountryField
+    required="">
+  <br>
+  <p>{{originCountryField.validationMessage}}</p>
+
+  <!--  <select *ngIf="user.artist" [(ngModel)]="user.artist">-->
+  <!--    <option *ngFor="let artist of artists " [value]="artst.id">{{artist.name}}</option>-->
+  <!--  </select>-->
+
+  <button (click)="updateArtist()" [disabled]="artistForm.invalid" >Submit</button>
+
+</form>

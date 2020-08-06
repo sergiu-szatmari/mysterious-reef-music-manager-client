@@ -1,4 +1,5 @@
 export interface Song {
+  _id: string;
   name: string;
   duration: number;
   genre: string[];

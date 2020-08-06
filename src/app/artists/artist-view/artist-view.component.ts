@@ -10,7 +10,9 @@ export class ArtistViewComponent implements OnInit {
 
   @Input() artist: Artist;
 
-  @Output() userClick = new EventEmitter<string>();
+  @Output() handleRemoveArtist = new EventEmitter<string>();
+
+  @Output() goToArtist = new EventEmitter<string>();
 
   constructor() { }
 
@@ -19,8 +21,15 @@ export class ArtistViewComponent implements OnInit {
 
   handleClick(event): void {
     try {
-      console.log({event});
-      this.userClick.emit(event);
+      this.handleRemoveArtist.emit(event);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  handleGoToArtist(artistId: string): void {
+    try {
+      this.goToArtist.emit(artistId);
     } catch (err) {
       console.error(err);
     }
