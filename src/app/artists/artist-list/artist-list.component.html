@@ -2,7 +2,7 @@
 <!--<div class="card-list">-->
   <app-artist-view
     *ngFor="let artist of artists"
-    (handleRemoveArtist)="handleRemoveArtist($event)"
+    (removeArtist)="handleRemoveArtist($event)"
     (goToArtist)="handleGoToArtist($event)"
     [artist] = "artist"
   ></app-artist-view>
