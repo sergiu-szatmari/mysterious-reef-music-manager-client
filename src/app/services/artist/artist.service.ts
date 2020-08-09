@@ -9,13 +9,12 @@ import {HttpClient} from '@angular/common/http';
 export class ArtistService {
 
   private artists: Artist[] = [];
-  private apiBase = 'https://mysterious-reef-17305.herokuapp.com/api/artists';
 
   constructor(private http: HttpClient) { }
 
   async getArtists(): Promise<Artist[]> {
     return this.http
-      .get<Artist[]>(this.apiBase)
+      .get<Artist[]>(`artists`)
       .toPromise()
       .then(artistList => artistList.map((artist => {
         artist.birthDate = new Date(artist.birthDate.toString().split('T')[0]);
@@ -25,7 +24,7 @@ export class ArtistService {
 
   async findOne(id: string): Promise<Artist> {
     const result = await this.http
-      .get<Artist>(`${this.apiBase}/${id}`)
+      .get<Artist>(`artists/${id}`)
       .toPromise();
 
     // console.log(result);
@@ -37,7 +36,7 @@ export class ArtistService {
 
   async insert(artist: Artist): Promise<void> {
     const result = await this.http
-      .post(`${this.apiBase}`, artist, { responseType: 'json' })
+      .post(`artists`, artist, { responseType: 'json' })
       .toPromise();
 
     console.log(result);
@@ -49,7 +48,7 @@ export class ArtistService {
     console.log({artist});
     try {
       const result = await this.http
-        .put(`${this.apiBase}/${id}`, artist, { responseType: 'json' })
+        .put(`artists/${id}`, artist, { responseType: 'json' })
         .toPromise();
       console.log(result);
     } catch (err) {
@@ -61,8 +60,8 @@ export class ArtistService {
   async removeOne(artist: Artist): Promise<void> {
     const id = artist._id;
     await this.http
-          .delete(`${this.apiBase}/${id}`)
-          .toPromise();
+      .delete(`artists/${id}`)
+      .toPromise();
 
   }
 }
