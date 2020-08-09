@@ -3,7 +3,7 @@ import {Artist} from '../../shared/models';
 import {Subject} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArtistService} from '../../services/artist/artist.service';
-import {takeUntil} from "rxjs/operators";
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-artist-form',

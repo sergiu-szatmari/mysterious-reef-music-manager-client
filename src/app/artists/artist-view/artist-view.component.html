@@ -1,6 +1,19 @@
 <div class="artist-card">
-  <h3 (click)="handleGoToArtist(artist._id)">{{ artist.name }}</h3>
+  <h3>{{ artist.name }}</h3>
   <p>{{ artist.birthDate | date: 'LL-MMM-y' }}</p>
   <p>{{ artist.originCountry || 'Unknown' }}</p>
-  <button (click)="handleClick(artist)"> Remove artist </button>
+
+  <div class="action-btn-container">
+    <button
+      mat-fab class="edit-btn"
+      (click)="handleGoToArtist(artist._id)">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+      mat-fab class="remove-btn"
+      (click)="handleClick(artist)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>

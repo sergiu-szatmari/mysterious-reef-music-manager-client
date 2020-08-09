@@ -38,3 +38,10 @@ h2 {
 h2:hover {
   background-color: #45a049;
 }
+
+.add-btn {
+  color: white;
+  background-color: #4CAF50;
+  &:hover { background-color: #419445; }
+  &:focus { background-color: #337936; }
+}

@@ -1,46 +1,67 @@
 <div class="container">
 
   <form *ngIf="artist" #artistForm="ngForm">
-    <label>Name</label>
-    <input
-      type="text"
-      name="name"
-      [(ngModel)]="artist.name"
-      #nameField
-      required
-      autocomplete="off"
-      minlength="3">
-    <br>
-    <p>{{nameField.validationMessage}}</p>
+    <mat-form-field class="form-field">
+      <mat-label>Artist name</mat-label>
+      <input
+        matInput
+        placeholder="Name"
+        type="text"
+        name="name"
+        [(ngModel)]="artist.name"
+        #nameField
+        required
+        autocomplete="off"
+        minlength="3">
+    </mat-form-field>
 
-    <label>Age</label>
-    <input
-      name="birthDate"
-      type="text"
-      [(ngModel)]="artist.birthDate"
-      #ageField
-      required
-      autocomplete="off">
-    <br>
-    <p>{{ageField.validationMessage}}</p>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Birth date</mat-label>
+      <input
+        matInput
+        placeholder="Date"
+        name="birthDate"
+        [(ngModel)]="artist.birthDate"
+        #birthDateField
+        required
+        autocomplete="off"
+        minlength="3"
+        [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-    <label>Origin country</label>
-    <input
-      name="originCountry"
-      type="text"
-      [(ngModel)]="artist.originCountry"
-      #originCountryField
-      required
-      autocomplete="off">
-    <br>
-    <p>{{originCountryField.validationMessage}}</p>
 
-    <!--  <select *ngIf="user.artist" [(ngModel)]="user.artist">-->
-    <!--    <option *ngFor="let artist of artists " [value]="artst.id">{{artist.name}}</option>-->
-    <!--  </select>-->
+    <mat-form-field class="form-field">
+      <mat-label>Origin country</mat-label>
+      <input
+        matInput
+        placeholder="Origin country"
+        type="text"
+        name="originCountry"
+        [(ngModel)]="artist.originCountry"
+        #originCountryField
+        required
+        autocomplete="off"
+        minlength="3">
+    </mat-form-field>
 
-    <button (click)="updateArtist()" [disabled]="artistForm.invalid" >Submit</button>
+    <div class="button-container">
+      <button
+        (click)="updateArtist()"
+        [disabled]="artistForm.invalid"
+        mat-raised-button
+        class="mat-accent"
+      >Update
+      </button>
+    </div>
+    <!--    &lt;!&ndash;  <select *ngIf="user.artist" [(ngModel)]="user.artist">&ndash;&gt;-->
+    <!--    &lt;!&ndash;    <option *ngFor="let artist of artists " [value]="artst.id">{{artist.name}}</option>&ndash;&gt;-->
+    <!--    &lt;!&ndash;  </select>&ndash;&gt;-->
+
+    <!--    <button (click)="updateArtist()" [disabled]="artistForm.invalid" >Submit</button>-->
 
   </form>
-
 </div>

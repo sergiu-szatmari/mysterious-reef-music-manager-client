@@ -10,23 +10,30 @@ h3 {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 30px;
-  //background-color: #4CAF50;
 }
+
 .artist-card:hover {
   box-shadow: 6px 12px 24px 4px rgba(0,0,0,0.2);
 }
 
-
-button {
-  background-color: #b01212;
-  color: white;
-  padding: 7px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.action-btn-container {
+  justify-content: space-around;
 }
 
-button:hover {
-  background-color: #8a1212;
+button {
+  margin: 0.5rem 1.5rem;
+}
+
+.remove-btn {
+  color: white;
+  background-color: #e73737;
+  &:hover { background-color: #b51e1e; }
+  &:focus { background-color: #8a1919; }
+}
+
+.edit-btn {
+  color: white;
+  background-color: #edc839;
+  &:hover { background-color: #d7b830; }
+  &:focus { background-color: #9f8328; }
 }
