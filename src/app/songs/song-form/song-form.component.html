@@ -1,0 +1,99 @@
+<div class="container">
+
+  <form *ngIf="song" #songForm="ngForm">
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        placeholder="Song name"
+        type="text"
+        name="name"
+        [(ngModel)]="song.name"
+        #nameField
+        required
+        autocomplete="off"
+        minlength="2">
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Date added</mat-label>
+      <input
+        matInput
+        placeholder="Date"
+        name="dateAdded"
+        [(ngModel)]="song.dateAdded"
+        #dateAddedField
+        required
+        autocomplete="off"
+        minlength="3"
+        [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>event</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Song duration</mat-label>
+      <input
+        matInput
+        placeholder="Duration as seconds count (ex. 90 (for 1:30), 250 (for 4:10)"
+        type="text"
+        name="duration"
+        [(ngModel)]="song.duration"
+        #durationField
+        required
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Beats per minute (BPM) - use slider</mat-label>
+      <input
+        matInput
+        placeholder="BPM for the curret sog"
+        type="text"
+        name="bpm"
+        [(ngModel)]="song.bpm"
+        #bpmField
+        required
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Artist (Select the artist from a drop-down menu)</mat-label>
+      <input
+        matInput
+        placeholder="Select the artist from a drop-down menu"
+        type="text"
+        name="artistID"
+        [(ngModel)]="song.bpm"
+        #artistField
+        disabled
+        required
+        autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Genre(s) (Select the artist from a drop-down menu)</mat-label>
+      <input
+        matInput
+        placeholder="Select the corresponding genres from a drop-down menu"
+        type="text"
+        name="genre"
+        #genreField
+        disabled
+        required
+        autocomplete="off">
+    </mat-form-field>
+
+    <div class="button-container">
+<!--        [disabled]="songForm.invalid"-->
+      <button
+        [disabled]="true"
+        mat-raised-button
+        class="mat-accent"
+      >Update
+      </button>
+    </div>
+
+  </form>
+</div>

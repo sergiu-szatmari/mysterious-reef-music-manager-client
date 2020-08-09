@@ -21,6 +21,28 @@ export class SongService {
     return this.http.get<Song>(`songs/${id}`).toPromise();
   }
 
+  async insert(song: Song): Promise<void> {
+    const result = await this.http
+      .post(`songs`, song, { responseType: 'json' })
+      .toPromise();
+
+    console.log(result);
+  }
+
+  async updateOne(song: Song): Promise<void> {
+    const id: string = song._id;
+    delete song._id;
+
+    try {
+      const result = await this.http
+        .put(`songs/${id}`, song, { responseType: 'json' })
+        .toPromise();
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   async removeOne(song: Song): Promise<void> {
     const id = song._id;
     try {

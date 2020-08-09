@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -9,7 +15,6 @@ ul {
 
     a {
       display: block;
-      //padding: .78vw;
       padding: 0.8rem 1.5rem;
       color: white;
       text-align: center;
@@ -17,7 +22,6 @@ ul {
     }
 
     a:hover {
-      //background-color: #111;
       background-color: #4CAF50 !important;
     }
 
@@ -25,4 +29,15 @@ ul {
       background-color: #4CAF50 !important;
     }
   }
+}
+
+#darkModeToggleLabel,
+#adminToggleLabel {
+  color: lightgray;
+  vertical-align: middle;
+  user-select: none;
+}
+
+mat-slide-toggle {
+  vertical-align: middle;
 }

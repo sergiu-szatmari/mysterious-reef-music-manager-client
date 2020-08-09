@@ -6,8 +6,22 @@
         {{g}} {{i < song.genre.length - 1 ? '|' : ''}}
     </span>
   </span>
-<!--  <p>{{ song.genre }} (BPM: {{ song.bpm }})</p>-->
   <p>Artist ref: {{ song.artistID }}</p>
   <p>Added: {{ song.dateAdded | date }}</p>
-  <button (click)="handleRemoveSong(song)">Remove song</button>
+
+  <div class="action-btn-container">
+    <button
+      mat-fab class="edit-btn"
+      (click)="handleGoToSong(song._id)"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+      mat-fab class="remove-btn"
+      (click)="handleRemoveSong(song)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>

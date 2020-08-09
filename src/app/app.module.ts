@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {UrlInterceptor} from './shared/interceptors/url.interceptor';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({

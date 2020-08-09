@@ -11,10 +11,19 @@ export class SongViewComponent implements OnInit {
   @Input() song: Song;
 
   @Output() handleClick = new EventEmitter<Song>();
+  @Output() goToSong = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleGoToSong(songID: string): void {
+    try {
+      this.goToSong.emit(songID);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   handleRemoveSong(song: Song): void {

@@ -1,16 +1,19 @@
+<div class="container">
 <ul>
   <li><a routerLink="artists" routerLinkActive="route-is-active">Artists</a></li>
   <li><a routerLink="songs" routerLinkActive="route-is-active">Songs</a></li>
   <li><a routerLink="settings" routerLinkActive="route-is-active">Settings</a></li>
-  <li>
+</ul>
+<ul>
+  <li id="toggle-buttons">
+
     <mat-slide-toggle
       color="primary"
       [(ngModel)]="isDarkMode"
       aria-labelledby="darkModeToggleLabel"
       (ngModelChange)="onDarkModeToggle($event)"></mat-slide-toggle>
     <mat-icon id="darkModeToggleLabel">nights_stay</mat-icon>
-  </li>
-  <li>
+
     <mat-slide-toggle
       color="accent"
       [(ngModel)]="isAdmin"
@@ -18,7 +21,8 @@
       (ngModelChange)="onAdminToggle($event)"
     ></mat-slide-toggle>
     <mat-icon id="adminToggleLabel">admin_panel_settings</mat-icon>
+
   </li>
 </ul>
-
+</div>
 <router-outlet></router-outlet>

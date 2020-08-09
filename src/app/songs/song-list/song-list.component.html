@@ -2,6 +2,15 @@
   <app-song-view
     *ngFor="let song of songs"
     (handleClick)="handleRemoveSong($event)"
+    (goToSong)="handleGoToSong($event)"
     [song] = "song"
   ></app-song-view>
+
+  <a routerLink="new" routerLinkActive="route-is-active">
+    <div class="song-card">
+      <button mat-raised-button class="add-btn">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </a>
 </div>

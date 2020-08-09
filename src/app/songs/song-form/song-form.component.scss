@@ -1,0 +1,31 @@
+.container {
+  width: 50%;
+  margin: auto;
+  display: block;
+  padding: 30px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+button {
+  width: 60%;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #edc839;
+}
+
+#artistForm,
+#nameField,
+#birthDateField {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+}
