@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ArtistService {
 
-  private artists: Artist[] = [];
+  // private artists: Artist[] = [];
 
   constructor(private http: HttpClient) { }
 

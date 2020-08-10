@@ -10,9 +10,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { SongFormComponent } from './song-form/song-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import {MatSliderModule} from '@angular/material/slider';
     MatIconModule,
     MatButtonModule,
     SharedModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class SongsModule {

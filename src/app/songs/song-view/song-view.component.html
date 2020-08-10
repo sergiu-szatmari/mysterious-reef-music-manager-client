@@ -6,7 +6,10 @@
         {{g}} {{i < song.genre.length - 1 ? '|' : ''}}
     </span>
   </span>
-  <p>Artist ref: {{ song.artistID }}</p>
+
+  <p *ngIf="!song.artist">Artist ref: {{ song.artistID }}</p>
+  <p *ngIf="song.artist">by: <i>{{song.artist.name}}</i></p>
+
   <p>Added: {{ song.dateAdded | date }}</p>
 
   <div class="action-btn-container">

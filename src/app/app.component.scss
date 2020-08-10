@@ -8,28 +8,25 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #333;
-
-  li {
-    display: inline-block;
-
-    a {
-      display: block;
-      padding: 0.8rem 1.5rem;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    a:hover {
-      background-color: #4CAF50 !important;
-    }
-
-    .route-is-active, .route-is-active:hover {
-      background-color: #4CAF50 !important;
-    }
-  }
 }
+
+li {
+  display: inline-block;
+  height: 100%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  padding: 0.8rem 1.5rem;
+
+  &:hover { background-color: #4CAF50 !important; }
+}
+
+.active-route,
+.active-route:hover { background-color: #4CAF50 !important; }
 
 #darkModeToggleLabel,
 #adminToggleLabel {
@@ -38,6 +35,14 @@ ul {
   user-select: none;
 }
 
-mat-slide-toggle {
-  vertical-align: middle;
+.toggle-button {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  padding: 0.8rem 1.5rem;
+}
+
+#home-btn {
+  //vertical-align: middle;
+  color: white;
 }

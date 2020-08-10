@@ -49,7 +49,7 @@
       <mat-label>Beats per minute (BPM) - use slider</mat-label>
       <input
         matInput
-        placeholder="BPM for the curret sog"
+        placeholder="BPM for the current sog"
         type="text"
         name="bpm"
         [(ngModel)]="song.bpm"
@@ -58,37 +58,45 @@
         autocomplete="off">
     </mat-form-field>
 
-    <mat-form-field class="form-field">
-      <mat-label>Artist (Select the artist from a drop-down menu)</mat-label>
-      <input
-        matInput
-        placeholder="Select the artist from a drop-down menu"
-        type="text"
-        name="artistID"
-        [(ngModel)]="song.bpm"
-        #artistField
-        disabled
+<!--    <mat-form-field class="form-field">-->
+<!--      <mat-label>Beats per minute (BPM)</mat-label>-->
+<!--        [displayWith]="formatLabel"-->
+<!--      <mat-slider-->
+<!--        thumbLabel-->
+<!--        tickInterval="1000"-->
+<!--        min="1"-->
+<!--        max="100000"></mat-slider>-->
+<!--    </mat-form-field>-->
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Song's artist</mat-label>
+      <mat-select
         required
-        autocomplete="off">
+        #artistSelect
+        name="artistID"
+        [(ngModel)]="song.artistID">
+        <mat-option
+          *ngFor="let artist of artists"
+          [value]="artist._id">
+          {{artist.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field">
-      <mat-label>Genre(s) (Select the artist from a drop-down menu)</mat-label>
-      <input
-        matInput
-        placeholder="Select the corresponding genres from a drop-down menu"
-        type="text"
-        name="genre"
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Genre(s)</mat-label>
+      <mat-select
+        (selectionChange)="updateGenreSelection($event)"
         #genreField
-        disabled
-        required
-        autocomplete="off">
+        multiple>
+        <mat-option *ngFor="let genre of genres" [value]="genre">{{genre}}</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <div class="button-container">
-<!--        [disabled]="songForm.invalid"-->
       <button
-        [disabled]="true"
+        [disabled]="songForm.invalid"
+        (click)="updateSong()"
         mat-raised-button
         class="mat-accent"
       >Update

@@ -1,28 +1,42 @@
 <div class="container">
-<ul>
-  <li><a routerLink="artists" routerLinkActive="route-is-active">Artists</a></li>
-  <li><a routerLink="songs" routerLinkActive="route-is-active">Songs</a></li>
-  <li><a routerLink="settings" routerLinkActive="route-is-active">Settings</a></li>
-</ul>
-<ul>
-  <li id="toggle-buttons">
 
-    <mat-slide-toggle
-      color="primary"
-      [(ngModel)]="isDarkMode"
-      aria-labelledby="darkModeToggleLabel"
-      (ngModelChange)="onDarkModeToggle($event)"></mat-slide-toggle>
-    <mat-icon id="darkModeToggleLabel">nights_stay</mat-icon>
+  <!-- Home, artists, songs, settings -->
+  <ul>
+    <li>
+      <a routerLink="" id="home-btn">
+        <mat-icon>home</mat-icon>
+      </a>
+    </li>
+    <li><a routerLink="artists" routerLinkActive="active-route">Artists</a></li>
+    <li><a routerLink="songs" routerLinkActive="active-route">Songs</a></li>
+    <li><a routerLink="settings" routerLinkActive="active-route">Settings</a></li>
+  </ul>
 
-    <mat-slide-toggle
-      color="accent"
-      [(ngModel)]="isAdmin"
-      aria-labelledby="adminToggleLabel"
-      (ngModelChange)="onAdminToggle($event)"
-    ></mat-slide-toggle>
-    <mat-icon id="adminToggleLabel">admin_panel_settings</mat-icon>
+  <!-- Dark mode toggle, admin toggle -->
+  <ul>
+    <li>
+      <div class="toggle-button">
+        <mat-slide-toggle
+          color="primary"
+          [(ngModel)]="isDarkMode"
+          aria-labelledby="darkModeToggleLabel"
+          (ngModelChange)="onDarkModeToggle($event)"></mat-slide-toggle>
+        <mat-icon id="darkModeToggleLabel">nights_stay</mat-icon>
+      </div>
+    </li>
 
-  </li>
-</ul>
+    <li>
+      <div class="toggle-button">
+        <mat-slide-toggle
+          color="accent"
+          [(ngModel)]="isAdmin"
+          aria-labelledby="adminToggleLabel"
+          (ngModelChange)="onAdminToggle($event)"
+        ></mat-slide-toggle>
+        <mat-icon id="adminToggleLabel">admin_panel_settings</mat-icon>
+      </div>
+    </li>
+  </ul>
 </div>
+
 <router-outlet></router-outlet>

@@ -1,9 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Song} from '../../shared/models';
+import {Artist, Song} from '../../shared/models';
 import {Subject} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SongService} from '../../services/song/song.service';
 import {takeUntil} from 'rxjs/operators';
+import {GenreService} from '../../services/genre/genre.service';
+import {MatSelectChange} from '@angular/material/select';
+import {ArtistService} from '../../services/artist/artist.service';
 
 @Component({
   selector: 'app-song-form',
@@ -15,9 +18,14 @@ export class SongFormComponent implements OnInit, OnDestroy {
   song: Song;
   unsubscribe$ = new Subject();
 
+  genres: string[];
+  artists: Artist[];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private songService: SongService,
+    private artistService: ArtistService,
+    private genreService: GenreService,
     private router: Router
   ) { }
 
@@ -37,10 +45,13 @@ export class SongFormComponent implements OnInit, OnDestroy {
   }
 
   async loadData(songID: string): Promise<void> {
-    const empty: Song = {_id: '', name: '', duration: 0, genre: [''], bpm: 0, artistID: '', dateAdded: new Date() };
+    const empty: Song = {_id: '', name: '', genre: [''], artistID: '', dateAdded: new Date() };
     this.song = (songID === 'new') ?
       empty :
       await this.songService.findOne(songID);
+
+    this.genres = this.genreService.getGenres();
+    this.artists = await this.artistService.getArtists();
   }
 
   async updateSong(): Promise<void> {
@@ -51,5 +62,9 @@ export class SongFormComponent implements OnInit, OnDestroy {
     }
 
     await this.router.navigateByUrl('/songs');
+  }
+
+  updateGenreSelection(event: MatSelectChange): void {
+    this.song.genre = event.value;
   }
 }

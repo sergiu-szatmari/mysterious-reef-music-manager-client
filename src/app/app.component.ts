@@ -8,20 +8,23 @@ import {environment} from '../environments/environment';
 })
 export class AppComponent implements OnInit {
 
-  isDarkMode = false;
-  isAdmin = false;
+  isDarkMode: boolean;
+  isAdmin: boolean;
+
+  // isDarkMode = false;
+  // isAdmin = false;
 
   constructor() {
     console.log(environment.secretMessage);
   }
 
   ngOnInit(): void {
-    this.isDarkMode = JSON.parse(localStorage.getItem('isDarkMode'));
+    this.isDarkMode = JSON.parse(sessionStorage.getItem('isDarkMode'));
     this.isAdmin = JSON.parse(sessionStorage.getItem('isAdmin'));
   }
 
   onDarkModeToggle(isDarkMode: boolean): void {
-    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+    sessionStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   }
 
   onAdminToggle(isAdmin: boolean): void {

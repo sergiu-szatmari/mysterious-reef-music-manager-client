@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
 
-import { Song } from '../../shared/models';
+import {Artist, Song} from '../../shared/models';
 import {HttpClient} from '@angular/common/http';
+import {ArtistService} from '../artist/artist.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SongService {
 
-  private songs: Song[] = [];
+  // private songs: Song[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private artistService: ArtistService
+  ) { }
 
   async getSongs(): Promise<Song[]> {
-    return this.http.get<Song[]>(`songs`).toPromise();
-    // return this.songs;
+    const songs = await this.http
+      .get<Song[]>(`songs`)
+      .toPromise();
+
+    for (const song of songs) {
+      song.artist = await this.artistService.findOne(song.artistID);
+    }
+    console.log(songs);
+    return songs;
   }
 
   async findOne(id: string): Promise<Song> {
@@ -22,11 +33,9 @@ export class SongService {
   }
 
   async insert(song: Song): Promise<void> {
-    const result = await this.http
-      .post(`songs`, song, { responseType: 'json' })
+    await this.http
+      .post(`songs`, song, { responseType: 'text' })
       .toPromise();
-
-    console.log(result);
   }
 
   async updateOne(song: Song): Promise<void> {
