@@ -2,6 +2,7 @@
   "name": "mysterious-reef-music-manager-client",
   "version": "0.0.0",
   "scripts": {
+    "deploy": "ng build -c production && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
